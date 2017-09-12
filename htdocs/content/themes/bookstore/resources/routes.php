@@ -52,14 +52,18 @@ Route::match(['get', 'post'], 'postTypeArchive', function ($post, \WP_Query $que
  *
  * @return string
  */
-Route::get('singular', ['bks-books', function (Books $books, \WP_Post $post, \WP_Query $query) {
+ Route::get('singular', ['bks-books', function (Books $books, \WP_Post $post, \WP_Query $query) {
+    $book = Entity\Book::make($post);
+    $bookRepository = Repository\BookRepository::make();
+    $books = $bookRepository->find([
+      'posts_per_page'	=> 3,
+      'post__not_in'		=> [$post->ID],
+      'orderby'			=> 'rand'
+    ]);
+    $books = $bookRepository->findAll();
     return view('twig.books.single', [
-        'book' => $post,
-        'books' => $books->find([
-            'posts_per_page'	=> 3,
-            'post__not_in'		=> [$post->ID],
-            'orderby'			=> 'rand'
-        ])->get()
+        'book' => $book,
+        'books' => $books
     ]);
 }]);
 

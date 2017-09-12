@@ -20,3 +20,5 @@ htdocs/content/languages/
 ### Environment Credentials
 .env.*
 !.env.local
+
+storage/entities/
