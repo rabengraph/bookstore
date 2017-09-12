@@ -16,15 +16,15 @@
                     <li>
                 {% endif %}
                         <div class="book">
-                            <h3>{{ book.post_title }}</h3>
-                            {% if fn.has_post_thumbnail(book.ID) %}
-                                <a href="{{ fn.get_permalink(book.ID) }}" class="book-featured-box" style="background-color: {{ meta('color', book.ID) }};">
-                                    {{ fn.get_the_post_thumbnail(book.ID, 'book-features-image')|raw }}
+                            <h3>{{ book.title }}</h3>
+                            {% if book.featuredImage %}
+                                <a href="{{ book.link }}" class="book-featured-box" style="background-color: {{ book.color }};">
+                                    <img src="{{book.promoImage.sizes.bookFeaturedImage.url}}" />
                                 </a>
                             {% endif %}
-                            <p>{{ fn.get_the_excerpt(book.ID) }}</p>
+                            <p>{{ book.excerpt }}</p>
                             <div class="button-box">
-                                <a href="{{ fn.get_permalink(book.ID) }}" class="tiny-button">{{ __("Buy", constant('THEME_TEXTDOMAIN')) }}</a>
+                                <a href="{{ book.link }}" class="tiny-button">{{ __("Buy", constant('THEME_TEXTDOMAIN')) }}</a>
                             </div>
                         </div>
                     </li>

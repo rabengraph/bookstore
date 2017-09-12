@@ -36,8 +36,11 @@ Route::match(['get', 'post'], 'front', 'Pages@home');
  * @return string
  */
 Route::match(['get', 'post'], 'postTypeArchive', function ($post, \WP_Query $query) {
+    $bookRepository = Repository\BookRepository::make();
+    $books = $bookRepository->setQuery($query);
+
     return view('twig.books.archive', [
-        'books'	=> $query->get_posts()
+        'books'	=> $books
     ]);
 });
 
