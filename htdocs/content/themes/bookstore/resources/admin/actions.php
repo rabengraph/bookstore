@@ -1,5 +1,7 @@
 <?php
 
+use Sef\WpEntities\WpEntities;
+
 /**
  * Define WordPress actions for your theme.
  *
@@ -27,3 +29,9 @@ Action::add('wp_footer', function()
         <?php
     endif;
 });
+
+
+WpEntities::build([
+  'cacheDir' => THEMOSIS_STORAGE,
+  'debug'    => true
+]);
