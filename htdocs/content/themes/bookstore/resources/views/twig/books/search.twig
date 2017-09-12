@@ -18,7 +18,7 @@
                             <div class="book">
                                 <h3>{{ book.title }}</h3>
                                 {% if book.featuredImage %}
-                                <a href="{{ featuredImage.link }}" class="book-featured-box" style="background-color: {{ book.color }};">
+                                <a href="{{ book.link }}" class="book-featured-box" style="background-color: {{ book.color }};">
                                     <img src="{{book.promoImage.sizes.bookFeaturedImage.url}}" />
                                 </a>
                                 {% endif %}
