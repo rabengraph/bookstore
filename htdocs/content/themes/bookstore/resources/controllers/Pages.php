@@ -75,9 +75,13 @@ class Pages extends BaseController
      */
     public function help(Faqs $faqs, $post)
     {
+        $faqRepository = \Repository\FaqRepository::make();        
+        $faqs = $faqRepository->findAll();
+        $page = \Entity\Page::make($post);
+
         return view('twig.pages.help', [
-            'page' => $post,
-            'faqs' => $faqs->find(['posts_per_page' => 250])->get()
+            'page' => $page,
+            'faqs' => $faqs
         ]);
     }
 }
