@@ -20,7 +20,7 @@ class Pages extends BaseController
      */
     public function home(Books $books, Posts $posts, $post)
     {
-        $page = \Entity\Page::make($post);
+        $page = \Entity\PageHome::make($post);
         $promotedBook = $page->getPromotedBook();
 
         $bookRepository = \Repository\BookRepository::make();        
