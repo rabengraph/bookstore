@@ -21,6 +21,8 @@ class Imagesizes extends SimpleEntity {
 
   protected $bookFeaturedImage;
 
+  protected $memberPic;
+
   protected $attachmentId;
 
   public function getFull( EntityBag $entityBag )
@@ -56,6 +58,11 @@ class Imagesizes extends SimpleEntity {
   public function getBookFeaturedImage( EntityBag $entityBag )
   {
     return $this->generateSize('book-features-image');
+  }
+
+  public function getMemberPic( EntityBag $entityBag )
+  {
+    return $this->generateSize('member-pic');
   }
 
   public function setAttachmentId( $attachmentId, EntityBag $entityBag )

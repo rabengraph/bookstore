@@ -18,4 +18,7 @@ return [
     'Repository\\'  => [
         themosis_path('theme.resources').'repositories'
     ],
+    'Converter\\'  => [
+        themosis_path('theme.resources').'converter'
+    ],
 ];

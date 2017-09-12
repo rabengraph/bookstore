@@ -52,10 +52,16 @@ class Pages extends BaseController
      */
     public function about(Posts $posts, $post)
     {
+        $postRepository = \Repository\PostRepository::make();        
+        $latestArticles = $postRepository->find([
+            'posts_per_page' => 2
+        ]);
+        $page = \Entity\PageAbout::make($post);
+        
         return view('twig.pages.about', [
-            'page' => $post,
-            'members' => meta('collaborators', $post->ID),
-            'latest_articles' => $posts->find(['posts_per_page' => 2])->get()
+            'page' => $page,
+            'members' => $page->getCollaborators(),
+            'latest_articles' => $latestArticles
         ]);
     }
 

@@ -4,10 +4,10 @@
 
     <div id="about" class="wrapper">
         <div class="bks-title-box">
-            <h1>{{ page.post_title }}</h1>
+            <h1>{{ page.title }}</h1>
         </div>
         <div id="about--content">
-            {{ wpautop(page.post_content)|raw }}
+            {{ page.content|raw }}
         </div>
         {% if members is not empty %}
             <div id="about--team">
@@ -21,10 +21,10 @@
                     {% endif %}
                             <div class="member clearfix">
                                 <div class="member--picture">
-                                    {{ fn.wp_get_attachment_image(member.pic, 'member-pic')|raw }}
+                                    <img src="{{member.pic.sizes.memberPic.url}}" />
                                 </div>
                                 <div class="member--bio">
-                                    <h4>{{ member.full_name }}</h4>
+                                    <h4>{{ member.fullName }}</h4>
                                     <p>{{ member.job }}</p>
                                 </div>
                             </div>
