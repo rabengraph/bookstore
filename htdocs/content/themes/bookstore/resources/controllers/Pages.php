@@ -20,18 +20,25 @@ class Pages extends BaseController
      */
     public function home(Books $books, Posts $posts, $post)
     {
-        // Get the promoted book ID.
-        $id = meta('book-promo', $post->ID);
+        $page = \Entity\Page::make($post);
+        $promotedBook = $page->getPromotedBook();
+
+        $bookRepository = \Repository\BookRepository::make();        
+        $books = $bookRepository->find([
+            'posts_per_page'	=> 3,
+            'post__not_in'		=> [$promotedBook->getId()],
+            'orderby'			=> 'rand'
+          ]);
+        $postRepository = \Repository\PostRepository::make();        
+        $latestArticles = $postRepository->find([
+            'posts_per_page' => 2
+        ]);
 
         return view('twig.pages.home', [
-            'promo' => $books->find(['p' => $id])->first()->get(),
-            'books' => $books->find([
-                'posts_per_page'	=> 3,
-                'post__not_in'		=> [$id],
-                'orderby'			=> 'rand'
-            ])->get(),
+            'promo' => $promotedBook,
+            'books' => $books,
             'news_url' => ('page' === get_option('show_on_front')) ? get_permalink(get_option('page_for_posts')) : get_home_url(),
-            'latest_articles' => $posts->find(['posts_per_page' => 2])->get()
+            'latest_articles' => $latestArticles
         ]);
     }
 

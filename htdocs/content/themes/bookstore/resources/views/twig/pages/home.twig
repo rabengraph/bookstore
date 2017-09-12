@@ -3,16 +3,16 @@
 {% block main %}
 
     <!-- Book Promo -->
-    <div id="bks-promo" style="background-color: {{ meta('color', promo.ID) }};">
+    <div id="bks-promo" style="background-color: {{ promo.color}};">
         <div class="wrapper">
             <div class="promo-wrapper">
                 <div class="promo-container">
-                    <h1>{{ promo.post_title }}</h1>
-                    <h5>{{ '%s %s'|format(__("By", constant('THEME_TEXTDOMAIN')), meta('author', promo.ID)) }}</h5>
-                    <a href="{{ fn.get_permalink(promo.ID) }}" class="big-button">{{ __("Buy book", constant('THEME_TEXTDOMAIN')) }}</a>
+                    <h1>{{ promo.title }}</h1>
+                    <h5>{{ '%s %s'|format(__("By", constant('THEME_TEXTDOMAIN')), promo.bookAuthor) }}</h5>
+                    <a href="{{ promo.link }}" class="big-button">{{ __("Buy book", constant('THEME_TEXTDOMAIN')) }}</a>
                 </div>
                 <div class="promo-media">
-                    <img src="{{ fn.wp_get_attachment_image_url(meta('promo-image', promo.ID), 'book-promo') }}" alt="{{ promo.post_title }}" width="399" height="435">
+                    <img src="{{ promo.promoImage.sizes.bookPromo.url }}" alt="{{ promo.title }}" width="399" height="435">
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
     <div id="popular-books" class="wrapper">
         <div class="bks-title-box">
             <h1>{{ __("Popular", constant('THEME_TEXTDOMAIN')) }}</h1>
-            <a href="{{ fn.get_post_type_archive_link(promo.post_type) }}" title="{{ __("Books", constant('THEME_TEXTDOMAIN')) }}" class="bks-link">{{ '> %s'|format(__("All Books", constant('THEME_TEXTDOMAIN'))) }}</a>
+            <a href="{{ fn.get_post_type_archive_link(promo.type) }}" title="{{ __("Books", constant('THEME_TEXTDOMAIN')) }}" class="bks-link">{{ '> %s'|format(__("All Books", constant('THEME_TEXTDOMAIN'))) }}</a>
         </div>
         <div id="popular-container">
             <ul class="books">
@@ -35,15 +35,15 @@
                         <li>
                     {% endif %}
                         <div class="book">
-                            <h3>{{ book.post_title }}</h3>
-                            {% if (fn.has_post_thumbnail(book.ID)) %}
-                                <a href="{{ fn.get_permalink(book.ID) }}" class="book-featured-box" style="background-color: {{ meta('color', book.ID) }};">
-                                    {{ fn.get_the_post_thumbnail(book.ID, 'book-features-image')|raw }}
+                            <h3>{{ book.title }}</h3>
+                            {% if book.featuredImage %}
+                                <a href="{{ featuredImage.link }}" class="book-featured-box" style="background-color: {{ book.color }};">
+                                    <img src="{{book.promoImage.sizes.bookFeaturedImage.url}}" />
                                 </a>
                             {% endif %}
-                            <p>{{ book.post_excerpt }}</p>
+                            <p>{{ book.excerpt }}</p>
                             <div class="button-box">
-                                <a href="{{ fn.get_permalink(book.ID) }}" class="tiny-button">{{ __("Buy", constant('THEME_TEXTDOMAIN')) }}</a>
+                                <a href="{{ book.link }}" class="tiny-button">{{ __("Buy", constant('THEME_TEXTDOMAIN')) }}</a>
                             </div>
                         </div>
                     </li>
