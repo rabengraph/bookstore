@@ -11,11 +11,7 @@
  * Domain Path: /languages
  */
 
-/**
- * Example of a minimalist plugin using some of the framework API
- * and the Composer auto-loader.
- */
-use Composer\Autoload\ClassLoader;
+
 use Themosis\Facades\PostType;
 
 /**
@@ -23,12 +19,6 @@ use Themosis\Facades\PostType;
  */
 defined('BOOKSTORE_FAQS_TD') ? BOOKSTORE_FAQS_TD : define('BOOKSTORE_FAQS_TD', 'bookstore-faqs');
 
-/**
- * Autoload our plugin custom classes.
- */
-$loader = new ClassLoader();
-$loader->addPsr4('Dev\\Bookstore\\Faqs\\', plugin_dir_path(__FILE__).'src');
-$loader->register();
 
 /**
  * FAQs custom post type.

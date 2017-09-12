@@ -77,7 +77,6 @@ return [
         /*
          * Our Books custom facade defined inside the plugin.
          */
-        'Books' => Dev\Bookstore\Books\Facades\Books::class
     ]
 
 ];

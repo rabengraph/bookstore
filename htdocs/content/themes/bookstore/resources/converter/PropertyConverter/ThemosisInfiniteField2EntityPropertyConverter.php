@@ -7,9 +7,9 @@ use Sef\WpEntities\Components\Converter\PropertyConverter\Importdata2EntityPrope
 class ThemosisInfiniteField2EntityPropertyConverter extends Importdata2EntityPropertyConverter 
 {
 
-  // themosis infinite fields return an array, where the first item starts with index 1 instea of 0
-  // the Importdata2EntityPropertyConverter doesnt recognize this as collection
-  // this forces converting as a collection
+  // themosis infinite fields return an array, where the first item starts with index 1 instead of 0
+  // as a consequnce the Importdata2EntityPropertyConverter (which is inherited here) doesnt recognize this as collection
+  // to solve this we force the converter to converting the array as a collection
   protected function isCollection( $data )
   {
     return true;

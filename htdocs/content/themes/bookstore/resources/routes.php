@@ -1,8 +1,5 @@
 <?php
 
-use Dev\Bookstore\Books\Models\Books;
-use Theme\Models\Posts;
-
 /*
  * Define your routes and which views to display
  * depending on the query.
@@ -55,7 +52,7 @@ Route::match(['get', 'post'], 'postTypeArchive', function ($post, \WP_Query $que
  *
  * @return string
  */
- Route::get('singular', ['bks-books', function (Books $books, \WP_Post $post, \WP_Query $query) {
+ Route::get('singular', ['bks-books', function ( \WP_Post $post, \WP_Query $query) {
     $book = Entity\Book::make($post);
     $bookRepository = Repository\BookRepository::make();
     $books = $bookRepository->find([
@@ -119,7 +116,7 @@ Route::match(['get', 'post'], 'home', function($post, \WP_Query $query)
  *
  * @return string
  */
-Route::match(['get', 'post'], 'singular', ['post', function(Posts $posts, \WP_Post $post)
+Route::match(['get', 'post'], 'singular', ['post', function(\WP_Post $post)
 {
     $article = \Entity\Post::make( $post );
     $postRepository = Repository\BookRepository::make();
