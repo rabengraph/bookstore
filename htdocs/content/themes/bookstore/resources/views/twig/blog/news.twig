@@ -16,16 +16,16 @@
                     {% for article in articles %}
                         <article>
                             <div class="article--date">
-                                <span>{{ fn.get_the_date('j F Y', article.ID) }}</span>
+                                <span>{{ article.date.format('j F Y') }}</span>
                             </div>
-                            <a href="{{ fn.get_permalink(article.ID) }}" class="article--title"><h2>{{ article.post_title }}</h2></a>
-                            {% if fn.has_post_thumbnail(article.ID) %}
-                                {{ fn.get_the_post_thumbnail(article.ID)|raw }}
+                            <a href="{{ article.link }}" class="article--title"><h2>{{ article.title }}</h2></a>
+                            {% if article.featuredImage %}
+                                <img src="{{ article.featuredImage.sizes.postThumbnail.url}}"/>
                             {% endif %}
                             <div class="article--excerpt clearfix">
                                 <div class="article--excerpt__content">
-                                    <p>{{ article.post_excerpt }}</p>
-                                    <a href="{{ fn.get_permalink(article.ID) }}" class="tiny-button yellow">{{ __("Read more", constant('THEME_TEXTDOMAIN')) }}</a>
+                                    <p>{{ article.excerpt }}</p>
+                                    <a href="{{ article.link }}" class="tiny-button yellow">{{ __("Read more", constant('THEME_TEXTDOMAIN')) }}</a>
                                 </div>
                             </div>
                         </article>

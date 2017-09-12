@@ -13,9 +13,13 @@ class Imagesizes extends SimpleEntity {
 
   protected $large;
 
+  protected $mediumLarge;
+  
   protected $medium;
 
   protected $thumbnail;
+
+  protected $postThumbnail;
 
   protected $bookPromo;
 
@@ -43,6 +47,16 @@ class Imagesizes extends SimpleEntity {
   public function getMedium( EntityBag $entityBag )
   {
     return $this->generateSize('medium');
+  }
+
+  public function getMediumLarge( EntityBag $entityBag )
+  {
+    return $this->generateSize('medium_large');
+  }
+
+  public function getPostThumbnail( EntityBag $entityBag )
+  {
+    return $this->generateSize('post-thumbnail');
   }
 
   public function getThumbnail( EntityBag $entityBag )

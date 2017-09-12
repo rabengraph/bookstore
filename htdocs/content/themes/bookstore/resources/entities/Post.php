@@ -12,6 +12,8 @@ use Sef\WpEntities\Annotation\PostOptions as Options;
   */
 class Post extends PostEntity {
 
+  use Traits\FeaturedImage;
+  
   protected $id;
 
   protected $content;

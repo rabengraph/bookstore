@@ -102,8 +102,12 @@ Route::match(['get', 'post'], 'home', function($post, \WP_Query $query)
      * We do not have a Twig directive to handle the "WordPress Loop" so we pass
      * them to the view through the "articles" variable.
      */
+
+    $postRepository = Repository\PostRepository::make();
+    $articles = $postRepository->setQuery($query);
+
     return view('twig.blog.news', [
-        'articles' => $query->get_posts()
+        'articles' => $articles
     ]);
 });
 

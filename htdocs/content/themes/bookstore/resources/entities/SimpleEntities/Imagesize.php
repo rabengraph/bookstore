@@ -130,7 +130,7 @@ class Imagesize extends SimpleEntity {
       return false;
     }
 
-    if( in_array($size, array( 'thumbnail', 'medium', 'large' ) ))
+    if( in_array($size, array( 'thumbnail', 'medium', 'large', 'medium_large', 'post-thumbnail' ) ))
     {
       $data['maxWidth'] = (int) get_option( $size . '_size_w' );
       $data['maxHeight'] = (int) get_option( $size . '_size_h' );
