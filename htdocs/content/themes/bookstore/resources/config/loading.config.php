@@ -13,9 +13,9 @@ return [
     'Theme\\Providers\\' => themosis_path('theme.resources').'providers',
 
     'Entity\\'  => [
-        themosis_path('theme').'entities'
+        themosis_path('theme.resources').'entities'
     ],
     'Repository\\'  => [
-        themosis_path('theme').'repositories'
+        themosis_path('theme.resources').'repositories'
     ],
 ];
