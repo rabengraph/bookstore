@@ -143,10 +143,13 @@ Route::match(['get', 'post'], 'archive', function ($post, \WP_Query $query) {
  *
  * @return string
  */
-Route::match(['get', 'post'], 'search', function($post, \WP_Query $query)
-{
-    return view('twig.books.search', [
-        'books' => $query->get_posts(),
-        'searched_terms' => Input::get('s')
-    ]);
-});
+ Route::match(['get', 'post'], 'search', function($post, \WP_Query $query)
+ {
+     $bookRepository = Repository\BookRepository::make();
+     $books = $bookRepository->setQuery($query);
+     return view('twig.books.search', [
+         'books' => $books,
+         'searched_terms' => Input::get('s')
+     ]);
+ });
+ 
