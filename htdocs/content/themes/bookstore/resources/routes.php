@@ -121,9 +121,14 @@ Route::match(['get', 'post'], 'home', function($post, \WP_Query $query)
  */
 Route::match(['get', 'post'], 'singular', ['post', function(Posts $posts, \WP_Post $post)
 {
+    $article = \Entity\Post::make( $post );
+    $postRepository = Repository\BookRepository::make();
+    $latestArticle = $postRepository->find([
+      'posts_per_page'	=> 2
+    ]);
     return view('twig.blog.post', [
-        'article' => $post,
-        'latest_articles' => $posts->find(['posts_per_page' => 2])->get()
+        'article' => $article,
+        'latest_articles' => $latestArticle
     ]);
 }]);
 
